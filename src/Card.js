@@ -1,30 +1,55 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Expando from './Expando'
 
 class Card extends Component {
   state = {
-    hovering: false
+    isHovered: false
   }
   
   handleEnter = (e) => {
     const { id, onMouseEnter } = this.props
     
-    onMouseEnter()
+    onMouseEnter(id)
+    
+    this.setState({
+      isHovered: true
+    })
   }
   
   handleLeave = (e) => {
     const { id, onMouseLeave } = this.props
     
-    onMouseLeave()
+    onMouseLeave(id)
+    
+    this.setState({
+      isHovered: false
+    })
   }
   
   _className() {
-    const { hovering } = this.state
-    console.log('eh', hovering)
-    return hovering ? 'slider-item hovered' : 'slider-item'
+    const { isHovered } = this.state
+    const { hoveredCardId, id } = this.props
+    
+    console.log('eh', isHovered)
+    
+    if (!isHovered) return 'slider-item'
+    
+    if (isHovered) {
+      return 'slider-item hovered'
+    }
+    else if (hoveredCardId > id) {
+      return 'slider-item shift-left'
+    }
+    else {
+      return 'slider-item shift-right';
+    }
+    // return isHovered ? 'slider-item hovered' : 'slider-item'
   }
   
-  render() {    
+  render() {
+    const { isHovered } = this.state
+    
     return (
       <div
         className={this._className()}
@@ -34,13 +59,15 @@ class Card extends Component {
         <div className='title-card'>
           <img className='title-card-image' src='341x192.png' />
         </div>
+        <Expando isHovered={isHovered} />
       </div>
     )
   }
 }
 
 Card.propTypes = {
-  // id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  hoveredCardId: PropTypes.string,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
 }
