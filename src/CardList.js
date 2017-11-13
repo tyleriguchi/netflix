@@ -7,21 +7,21 @@ class CardList extends Component {
     hoveredCardId: '',
     // keep track of whos hovered
     // move the siblings over when someones hovered
-    
+
   }
   data() {
     return {
-      
+
     }
   }
-  
+
   handleMouseEnter = (id) => {
     this.setState({
       someonesHovered: true,
       hoveredCardId: id,
     })
   }
-  
+
   handleMouseLeave = () => {
     this.setState({
       someonesHovered: false,
@@ -31,16 +31,16 @@ class CardList extends Component {
 
   render() {
     const { someonesHovered, hoveredCardId } = this.state
-    
+
     const cards = []
     for (let i = 0; i < 14; i++) {
       cards.push(
-        <Card 
-          key={i} 
-          id={i} 
+        <Card
+          key={i}
+          id={i.toString()} 
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
-          hoveredCardId={hoveredCardId} 
+          hoveredCardId={hoveredCardId}
         />
       )
     }

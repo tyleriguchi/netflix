@@ -7,30 +7,41 @@ body {
 .slider {
   white-space: nowrap;
 }
-  
+
 .slider-item {
   width: 16.67%;
   display: inline-block;
   vertical-align: top;
-  
+
+  /*
+  TODO figure out how the transitions are calculated for siblings when something is hovered
+  */
   /*transform: translate3d(-105px, 0px, 0px); */
   /*transform: translate3d(-120px, 0px, 0px);
-  transition-duration: 400ms; 
-  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1); 
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+  transition-delay: 0ms;*/
+  /*transform: translate3d(109px, 0px, 0px);
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
   transition-delay: 0ms;*/
 }
 
 .slider-item.hovered {
   z-index: 2;
   transform: translate3d(0px, 0px, 0px);
-  transition-duration: 400ms; 
-  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1); 
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
   transition-delay: 0ms;
 }
 
 .expando {
+  position: absolute;
+}
+
+.expando-transition {
   transform: scale(1);
-  visibility: visible; 
+  visibility: visible;
   width: 195%;
   height: 195%;
   top: -47.5%;
@@ -44,5 +55,19 @@ body {
 }
 
 .title-card-image {
+  background-image: url("./341x192.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+
   width: 100%;
+  padding: 28.125% 0;
+}
+
+.expando-image-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }

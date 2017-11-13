@@ -6,35 +6,35 @@ class Card extends Component {
   state = {
     isHovered: false
   }
-  
+
   handleEnter = (e) => {
     const { id, onMouseEnter } = this.props
-    
+
     onMouseEnter(id)
-    
+
     this.setState({
       isHovered: true
     })
   }
-  
+
   handleLeave = (e) => {
     const { id, onMouseLeave } = this.props
-    
+
     onMouseLeave(id)
-    
+
     this.setState({
       isHovered: false
     })
   }
-  
+
   _className() {
     const { isHovered } = this.state
     const { hoveredCardId, id } = this.props
-    
+
     console.log('eh', isHovered)
-    
+
     if (!isHovered) return 'slider-item'
-    
+
     if (isHovered) {
       return 'slider-item hovered'
     }
@@ -46,20 +46,23 @@ class Card extends Component {
     }
     // return isHovered ? 'slider-item hovered' : 'slider-item'
   }
-  
+
   render() {
     const { isHovered } = this.state
-    
+
     return (
       <div
         className={this._className()}
         onMouseEnter={this.handleEnter}
         onMouseLeave={this.handleLeave}
       >
-        <div className='title-card'>
-          <img className='title-card-image' src='341x192.png' />
+        <div>
+          <div className='title-card'>
+            <div className='title-card-image'>
+            </div>
+          </div>
+          <Expando isHovered={isHovered} />
         </div>
-        <Expando isHovered={isHovered} />
       </div>
     )
   }
